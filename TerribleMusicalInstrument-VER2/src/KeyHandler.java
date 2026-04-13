@@ -32,37 +32,37 @@ public class KeyHandler implements KeyListener{ //KeyListener acts like a contra
             dHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchD = (int)(Math.random() * 128);
             int velocity = (int)(Math.random() * 101);
-            soundEngine.playNote(1, pitchD, velocity);
+            soundEngine.playNote(3, pitchD, velocity);
         }
         if(key == KeyEvent.VK_F && !fHeld){
             fHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchF = (int)(Math.random() * 128);
             int velocity = (int)(Math.random() * 101);
-            soundEngine.playNote(1, pitchF, velocity);
+            soundEngine.playNote(4, pitchF, velocity);
         }
         if(key == KeyEvent.VK_J && !jHeld){
             jHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchJ = (int)(Math.random() * 128);
             int velocity = (int)(Math.random() * 101);
-            soundEngine.playNote(1, pitchJ, velocity);
+            soundEngine.playNote(5, pitchJ, velocity);
         }
         if(key == KeyEvent.VK_K && !kHeld){
             kHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchK = (int)(Math.random() * 128);
             int velocity = (int)(Math.random() * 101);
-            soundEngine.playNote(1, pitchK, velocity);
+            soundEngine.playNote(6, pitchK, velocity);
         }
         if(key == KeyEvent.VK_L && !lHeld){
             lHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchL = (int)(Math.random() * 128);
             int velocity = (int)(Math.random() * 101);
-            soundEngine.playNote(1, pitchL, velocity);
+            soundEngine.playNote(7, pitchL, velocity);
         }
         if(key == KeyEvent.VK_SEMICOLON && !semiHeld){
             semiHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchSemi = (int)(Math.random() * 128);
             int velocity = (int)(Math.random() * 101);
-            soundEngine.playNote(1, pitchSemi, velocity);
+            soundEngine.playNote(8, pitchSemi, velocity);
         }
     }
 
@@ -80,27 +80,27 @@ public class KeyHandler implements KeyListener{ //KeyListener acts like a contra
         }
         if(key == KeyEvent.VK_D){
             dHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
-            soundEngine.stopNote(1, pitchD);
+            soundEngine.stopNote(3, pitchD);
         }
         if(key == KeyEvent.VK_F){
             fHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
-            soundEngine.stopNote(1, pitchF);
+            soundEngine.stopNote(4, pitchF);
         }
         if(key == KeyEvent.VK_J){
             jHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
-            soundEngine.stopNote(1, pitchJ);
+            soundEngine.stopNote(5, pitchJ);
         }
         if(key == KeyEvent.VK_K){
             kHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
-            soundEngine.stopNote(1, pitchK);
+            soundEngine.stopNote(6, pitchK);
         }
         if(key == KeyEvent.VK_L){
             lHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
-            soundEngine.stopNote(1, pitchL);
+            soundEngine.stopNote(7, pitchL);
         }
         if(key == KeyEvent.VK_SEMICOLON){
             semiHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
-            soundEngine.stopNote(1, pitchSemi);
+            soundEngine.stopNote(8, pitchSemi);
         }
     }
     @Override//must define this method as this interface acts as a contract promising all three methods will be present
