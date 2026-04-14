@@ -65,7 +65,7 @@ public class App implements ActionListener {
         titleLabel.setText("The Amazing Piano!");
         //titleLabel.setBounds(0, 0, 400, 60);
         //titleLabel.setBorder(border);
-        titleLabel.setVerticalAlignment(JLabel.TOP);//set text/image to top of label
+        titleLabel.setVerticalAlignment(JLabel.CENTER);//set text/image to top of label
         titleLabel.setHorizontalAlignment(JLabel.CENTER);//set text/image to center of label
         //titleLabel.setBounds(JLabel.CENTER,JLabel.TOP,250,100);
         //titleLabel.setHorizontalTextPosition(JLabel.CENTER);
