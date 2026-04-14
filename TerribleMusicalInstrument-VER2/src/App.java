@@ -4,8 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class App implements ActionListener {
 
@@ -17,11 +16,10 @@ public class App implements ActionListener {
         KeyHandler keyHandler = new KeyHandler(soundEngine);//implements the soundEngine to keyHandler constructor
         //Border border = BorderFactory.createLineBorder(Color.green,3);
 
-        Font titleFont = Font.createFont(Font.TRUETYPE_FONT, App.class.getResourceAsStream("/WhimsyTT.ttf")).deriveFont(35f);
-        Font regularFont = Font.createFont(Font.TRUETYPE_FONT, App.class.getResourceAsStream("/WhimsyTT.ttf")).deriveFont(20f);
+        Font titleFont = Font.createFont(Font.TRUETYPE_FONT, new File("TerribleMusicalInstrument-VER2/resources/WhimsyTT.ttf")).deriveFont(35f);
+        Font regularFont = Font.createFont(Font.TRUETYPE_FONT, new File("TerribleMusicalInstrument-VER2/resources/WhimsyTT.ttf")).deriveFont(20f);
 
-        BufferedImage muteImage = ImageIO.read(App.class.getResourceAsStream("/Mute_Icon.png"));
-        ImageIcon muteIcon = new ImageIcon(muteImage);
+        ImageIcon muteIcon = new ImageIcon("TerribleMusicalInstrument-VER2/resources/muteIcon.png");
         JFrame frame = new JFrame();//creates a frame
         JPanel titlePanel = new JPanel();
         JPanel volPanel = new JPanel();
