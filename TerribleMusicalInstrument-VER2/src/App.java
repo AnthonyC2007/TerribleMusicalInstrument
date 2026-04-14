@@ -1,40 +1,81 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Font;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
-public class App {
+public class App implements ActionListener {
+
+    JButton volButton; //making our button a global variables
+    JButton muteButton;
     public static void main(String[] args) throws Exception {
         
         SoundEngine soundEngine = new SoundEngine();
         KeyHandler keyHandler = new KeyHandler(soundEngine);//implements the soundEngine to keyHandler constructor
         //Border border = BorderFactory.createLineBorder(Color.green,3);
 
-        Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("TerribleMusicalInstrument-VER2/WhimsyTT.ttf")).deriveFont(35f);
+        Font titleFont = Font.createFont(Font.TRUETYPE_FONT, App.class.getResourceAsStream("/WhimsyTT.ttf")).deriveFont(35f);
+        Font regularFont = Font.createFont(Font.TRUETYPE_FONT, App.class.getResourceAsStream("/WhimsyTT.ttf")).deriveFont(20f);
+
+        BufferedImage muteImage = ImageIO.read(App.class.getResourceAsStream("/Mute_Icon.png"));
+        ImageIcon muteIcon = new ImageIcon(muteImage);
         JFrame frame = new JFrame();//creates a frame
         JPanel titlePanel = new JPanel();
+        JPanel volPanel = new JPanel();
+        JPanel mutePanel = new JPanel();
+        App app = new App();//creating a constructor for app so we can use functions such as ActionListner
+        app.volButton = new JButton();
+        app.muteButton = new JButton();
+        JButton volButton = app.volButton;
+        JButton muteButton = app.muteButton;
+
+        //volButton.setVerticalAlignment(JButton.CENTER);
+        //volButton.setHorizontalAlignment(JButton.CENTER);
+        volButton.setBounds(100,100,200,100);
+        volButton.setFont(regularFont);
+        volButton.setText("Change Vol");
+        volButton.addActionListener(app);
+
+        muteButton.setIcon(muteIcon);
+        muteButton.setBounds(150,100,100,100);
+
+
         frame.setSize(1200,900);//sets dimenstion
-
+        titlePanel.setLayout(new BorderLayout());//creates a border for each panel so labels can be moved around them
         titlePanel.setBounds(400, 0, 400, 300);
+        //titlePanel.setLayout(null);
 
-        titlePanel.setLayout(null);
+        //volPanel.setLayout(new BorderLayout());
+        volPanel.setLayout(null);
+        volPanel.setBounds(800,0,400,300);
+        volPanel.add(volButton);
 
-        JLabel label = new JLabel();//creates a label
-        label.setText("The Amazing Piano!");
-        label.setBounds(0, 0, 400, 60);
-        //label.setBorder(border);
-        label.setVerticalAlignment(JLabel.TOP);//set text/image to top of label
-        label.setHorizontalAlignment(JLabel.CENTER);//set text/image to center of label
-        //label.setBounds(JLabel.CENTER,JLabel.TOP,250,100);
-        //label.setHorizontalTextPosition(JLabel.CENTER);
-        //label.setVerticalTextPosition(JLabel.TOP);
-        //label.setForeground(new Color(0,0,0));
-        label.setFont(customFont); //set font of text
-        //label.setIconTextGap(50); //set gap of text to image
-        //label.setBackground(Color.black);
-        //label.setOpaque(true);
-        titlePanel.add(label);
+        mutePanel.setLayout(null);
+        mutePanel.setBounds(0,0,400,300);
+        mutePanel.add(muteButton);
+
+
+
+        JLabel titleLabel = new JLabel();//creates a label
+        titleLabel.setText("The Amazing Piano!");
+        //titleLabel.setBounds(0, 0, 400, 60);
+        //titleLabel.setBorder(border);
+        titleLabel.setVerticalAlignment(JLabel.TOP);//set text/image to top of label
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);//set text/image to center of label
+        //titleLabel.setBounds(JLabel.CENTER,JLabel.TOP,250,100);
+        //titleLabel.setHorizontalTextPosition(JLabel.CENTER);
+        //titleLabel.setVerticalTextPosition(JLabel.TOP);
+        //titleLabel.setForeground(new Color(0,0,0));
+        titleLabel.setFont(titleFont); //set font of text
+        //titleLabel.setIconTextGap(50); //set gap of text to image
+        //titleLabel.setBackground(Color.black);
+        //titleLabel.setOpaque(true);
+        titlePanel.add(titleLabel);
+
+
 
 
         frame.setTitle("The Amazing Piano!");
@@ -42,9 +83,18 @@ public class App {
         //frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);//tricks the user into closing the application
         frame.addKeyListener(keyHandler);//connects the keyHandler class directly to the frame
-        frame.setFocusable(true);
-        frame.add(titlePanel);
+        frame.setFocusable(true);//so we can interact with the frame
+        frame.add(titlePanel);//adds the title panel to the frame
+        frame.add(volPanel);
+        frame.add(mutePanel);
         frame.setVisible(true);//ensures we can actually see the frame
         //frame.pack();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == volButton){ //if the button clicked was the vol button
+            System.exit(0);//will close the program
+        }
     }
 }
