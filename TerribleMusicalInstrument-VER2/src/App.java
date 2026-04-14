@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.awt.Color;
 
 public class App implements ActionListener {
 
@@ -14,7 +15,7 @@ public class App implements ActionListener {
         
         SoundEngine soundEngine = new SoundEngine();
         KeyHandler keyHandler = new KeyHandler(soundEngine);//implements the soundEngine to keyHandler constructor
-        //Border border = BorderFactory.createLineBorder(Color.green,3);
+        Border border = BorderFactory.createLineBorder(Color.black,3);
 
         Font titleFont = Font.createFont(Font.TRUETYPE_FONT, new File("TerribleMusicalInstrument-VER2/resources/WhimsyTT.ttf")).deriveFont(35f);
         Font regularFont = Font.createFont(Font.TRUETYPE_FONT, new File("TerribleMusicalInstrument-VER2/resources/WhimsyTT.ttf")).deriveFont(20f);
@@ -24,6 +25,7 @@ public class App implements ActionListener {
         JPanel titlePanel = new JPanel();
         JPanel volPanel = new JPanel();
         JPanel mutePanel = new JPanel();
+        JPanel keysPanel = new JPanel();
         App app = new App();//creating a constructor for app so we can use functions such as ActionListner
         app.volButton = new JButton();
         app.muteButton = new JButton();
@@ -55,6 +57,8 @@ public class App implements ActionListener {
         mutePanel.setBounds(0,0,400,300);
         mutePanel.add(muteButton);
 
+        keysPanel.setLayout(null);
+        keysPanel.setBounds(0,300,1200,300);
 
 
         JLabel titleLabel = new JLabel();//creates a label
@@ -74,17 +78,101 @@ public class App implements ActionListener {
         titlePanel.add(titleLabel);
 
 
+        JLabel kLabel = new JLabel();
+        JLabel fLabel = new JLabel();
+        JLabel aLabel = new JLabel();
+        JLabel lLabel = new JLabel();
+        JLabel dLabel = new JLabel();
+        JLabel semiLabel = new JLabel();
+        JLabel sLabel = new JLabel();
+        JLabel jLabel = new JLabel();
+
+        kLabel.setBounds(25,50,100,200);
+        kLabel.setLayout(new BorderLayout());
+        kLabel.setVerticalAlignment(JLabel.CENTER);
+        kLabel.setHorizontalAlignment(JLabel.CENTER);
+        kLabel.setText("K");
+        kLabel.setFont(titleFont);
+        kLabel.setBorder(border);
+
+        fLabel.setBounds(150,50,100,200);
+        fLabel.setLayout(new BorderLayout());
+        fLabel.setVerticalAlignment(JLabel.CENTER);
+        fLabel.setHorizontalAlignment(JLabel.CENTER);
+        fLabel.setText("F");
+        fLabel.setFont(titleFont);
+        fLabel.setBorder(border);
+
+        aLabel.setBounds(300,50,100,200);
+        aLabel.setLayout(new BorderLayout());
+        aLabel.setVerticalAlignment(JLabel.CENTER);
+        aLabel.setHorizontalAlignment(JLabel.CENTER);
+        aLabel.setText("A");
+        aLabel.setFont(titleFont);
+        aLabel.setBorder(border);
+
+        lLabel.setBounds(450,50,100,200);
+        lLabel.setLayout(new BorderLayout());
+        lLabel.setVerticalAlignment(JLabel.CENTER);
+        lLabel.setHorizontalAlignment(JLabel.CENTER);
+        lLabel.setText("L");
+        lLabel.setFont(titleFont);
+        lLabel.setBorder(border);
+
+        dLabel.setBounds(600,50,100,200);
+        dLabel.setLayout(new BorderLayout());
+        dLabel.setVerticalAlignment(JLabel.CENTER);
+        dLabel.setHorizontalAlignment(JLabel.CENTER);
+        dLabel.setText("D");
+        dLabel.setFont(titleFont);
+        dLabel.setBorder(border);
+
+        semiLabel.setBounds(750,50,100,200);
+        semiLabel.setLayout(new BorderLayout());
+        semiLabel.setVerticalAlignment(JLabel.CENTER);
+        semiLabel.setHorizontalAlignment(JLabel.CENTER);
+        semiLabel.setText(":");
+        semiLabel.setFont(titleFont);
+        semiLabel.setBorder(border);
+
+        sLabel.setBounds(900,50,100,200);
+        sLabel.setLayout(new BorderLayout());
+        sLabel.setVerticalAlignment(JLabel.CENTER);
+        sLabel.setHorizontalAlignment(JLabel.CENTER);
+        sLabel.setText("S");
+        sLabel.setFont(titleFont);
+        sLabel.setBorder(border);
+
+        jLabel.setBounds(1050,50,100,200);
+        jLabel.setLayout(new BorderLayout());
+        jLabel.setVerticalAlignment(JLabel.CENTER);
+        jLabel.setHorizontalAlignment(JLabel.CENTER);
+        jLabel.setText("J");
+        jLabel.setFont(titleFont);
+        jLabel.setBorder(border);
+
+        keysPanel.add(kLabel);
+        keysPanel.add(fLabel);
+        keysPanel.add(aLabel);
+        keysPanel.add(lLabel);
+        keysPanel.add(dLabel);
+        keysPanel.add(semiLabel);
+        keysPanel.add(sLabel);
+        keysPanel.add(jLabel);
+
+
 
 
         frame.setTitle("The Amazing Piano!");
         frame.setLayout(null);
-        //frame.setResizable(false);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);//tricks the user into closing the application
         frame.addKeyListener(keyHandler);//connects the keyHandler class directly to the frame
         frame.setFocusable(true);//so we can interact with the frame
         frame.add(titlePanel);//adds the title panel to the frame
         frame.add(volPanel);
         frame.add(mutePanel);
+        frame.add(keysPanel);
         frame.setVisible(true);//ensures we can actually see the frame
         //frame.pack();
     }
