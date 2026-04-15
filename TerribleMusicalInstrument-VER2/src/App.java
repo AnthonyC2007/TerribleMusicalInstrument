@@ -26,6 +26,8 @@ public class App implements ActionListener {
         JPanel volPanel = new JPanel();
         JPanel mutePanel = new JPanel();
         JPanel keysPanel = new JPanel();
+
+
         App app = new App();//creating a constructor for app so we can use functions such as ActionListner
         app.volButton = new JButton();
         app.muteButton = new JButton();
@@ -41,6 +43,7 @@ public class App implements ActionListener {
 
         muteButton.setIcon(muteIcon);
         muteButton.setBounds(150,100,100,100);
+        muteButton.addActionListener(e -> frame.requestFocusInWindow());//returns focus to window to keep playing the keys
 
 
         frame.setSize(1200,900);//sets dimenstion
