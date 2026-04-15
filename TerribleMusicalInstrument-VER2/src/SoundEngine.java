@@ -9,7 +9,12 @@ public class SoundEngine {
         Synthesizer synth = MidiSystem.getSynthesizer();
         synth.open();
         channels = synth.getChannels();
-        MidiChannel droneChannel = channels[2];
+
+        for(int i = 0; i <= 8; i++){
+            channels[i].programChange(0);
+        }
+
+        MidiChannel droneChannel = channels[10];
         droneChannel.programChange(49);//changes instrument
         droneChannel.noteOn(37, 50);//note plays forever in background
     }

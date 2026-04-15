@@ -9,8 +9,15 @@ import java.awt.Color;
 
 public class App implements ActionListener {
 
+    private SoundEngine soundEngine;
+
+    public App(SoundEngine soundEngine){
+        this.soundEngine = soundEngine;
+    }
+
     JButton volButton; //making our button a global variables
     JButton muteButton;
+    JButton scaleButton;
     public static void main(String[] args) throws Exception {
         
         SoundEngine soundEngine = new SoundEngine();
@@ -26,13 +33,16 @@ public class App implements ActionListener {
         JPanel volPanel = new JPanel();
         JPanel mutePanel = new JPanel();
         JPanel keysPanel = new JPanel();
+        JPanel scalePanel = new JPanel();
 
 
-        App app = new App();//creating a constructor for app so we can use functions such as ActionListner
+        App app = new App(soundEngine);//creating a constructor for app so we can use functions such as ActionListner
         app.volButton = new JButton();
         app.muteButton = new JButton();
+        app.scaleButton = new JButton();
         JButton volButton = app.volButton;
         JButton muteButton = app.muteButton;
+        JButton scaleButton = app.scaleButton;
 
         //volButton.setVerticalAlignment(JButton.CENTER);
         //volButton.setHorizontalAlignment(JButton.CENTER);
@@ -45,6 +55,11 @@ public class App implements ActionListener {
         muteButton.setBounds(150,100,100,100);
         muteButton.addActionListener(e -> frame.requestFocusInWindow());//returns focus to window to keep playing the keys
 
+        scaleButton.setBounds(100,100,200,100);
+        scaleButton.setFont(regularFont);
+        scaleButton.setText("Play Scale");
+        scaleButton.addActionListener(app);
+        scaleButton.addActionListener(e -> frame.requestFocusInWindow());
 
         frame.setSize(1200,900);//sets dimenstion
         titlePanel.setLayout(new BorderLayout());//creates a border for each panel so labels can be moved around them
@@ -62,6 +77,10 @@ public class App implements ActionListener {
 
         keysPanel.setLayout(null);
         keysPanel.setBounds(0,300,1200,300);
+
+        scalePanel.setLayout(null);
+        scalePanel.setBounds(400,600,400,300);
+        scalePanel.add(scaleButton);
 
 
         JLabel titleLabel = new JLabel();//creates a label
@@ -176,6 +195,7 @@ public class App implements ActionListener {
         frame.add(volPanel);
         frame.add(mutePanel);
         frame.add(keysPanel);
+        frame.add(scalePanel);
         frame.setVisible(true);//ensures we can actually see the frame
         //frame.pack();
     }
@@ -185,5 +205,22 @@ public class App implements ActionListener {
         if(e.getSource() == volButton){ //if the button clicked was the vol button
             System.exit(0);//will close the program
         }
+        if(e.getSource() == scaleButton){
+            int[] pitches = {60, 62, 64, 65, 67, 69, 71, 73};
+            int noteLength = 500;
+            for(int i = 0; i < pitches.length; i++){
+                int pitch = pitches[i];
+                int delay = i * 600; // timer works by delaying after the button is pressed so this ensure they dont 
+                //run at the same time
+                Timer timer = new Timer(delay, event -> soundEngine.playNote(8, pitch, 100));
+                timer.setRepeats(false);
+                timer.start();
+                Timer stopTimer = new Timer(delay + noteLength, event -> soundEngine.stopNote(8,pitch));
+                stopTimer.setRepeats(false);
+                stopTimer.start();
+            }
+            }
+
     }
 }
+
