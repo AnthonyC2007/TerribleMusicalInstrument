@@ -18,6 +18,7 @@ public class App implements ActionListener {
     JButton volButton; //making our button a global variables
     JButton muteButton;
     JButton scaleButton;
+    JButton tuneButton;
     public static void main(String[] args) throws Exception {
         
         SoundEngine soundEngine = new SoundEngine();
@@ -34,15 +35,18 @@ public class App implements ActionListener {
         JPanel mutePanel = new JPanel();
         JPanel keysPanel = new JPanel();
         JPanel scalePanel = new JPanel();
+        JPanel tunePanel = new JPanel();
 
 
         App app = new App(soundEngine);//creating a constructor for app so we can use functions such as ActionListner
         app.volButton = new JButton();
         app.muteButton = new JButton();
         app.scaleButton = new JButton();
+        app.tuneButton = new JButton();
         JButton volButton = app.volButton;
         JButton muteButton = app.muteButton;
         JButton scaleButton = app.scaleButton;
+        JButton tuneButton = app.tuneButton;
 
         //volButton.setVerticalAlignment(JButton.CENTER);
         //volButton.setHorizontalAlignment(JButton.CENTER);
@@ -61,6 +65,13 @@ public class App implements ActionListener {
         scaleButton.addActionListener(app);
         scaleButton.addActionListener(e -> frame.requestFocusInWindow());
 
+        tuneButton.setText("Tune");
+        tuneButton.setFont(regularFont);
+        tuneButton.setBounds(100, 100, 200, 100);
+        tuneButton.addActionListener(keyHandler); //sends the action to the keyHandler class
+        tuneButton.addActionListener(e -> frame.requestFocusInWindow());
+        keyHandler.setTuneButton(tuneButton);
+
         frame.setSize(1200,900);//sets dimenstion
         titlePanel.setLayout(new BorderLayout());//creates a border for each panel so labels can be moved around them
         titlePanel.setBounds(400, 0, 400, 300);
@@ -68,19 +79,28 @@ public class App implements ActionListener {
 
         //volPanel.setLayout(new BorderLayout());
         volPanel.setLayout(null);
+        volPanel.setBackground(Color.orange);
         volPanel.setBounds(800,0,400,300);
         volPanel.add(volButton);
 
         mutePanel.setLayout(null);
+        mutePanel.setBackground(Color.GREEN);
         mutePanel.setBounds(0,0,400,300);
         mutePanel.add(muteButton);
 
         keysPanel.setLayout(null);
+        keysPanel.setBackground(Color.PINK);
         keysPanel.setBounds(0,300,1200,300);
 
         scalePanel.setLayout(null);
+        scalePanel.setBackground(Color.YELLOW);
         scalePanel.setBounds(400,600,400,300);
         scalePanel.add(scaleButton);
+
+        tunePanel.setLayout(null);
+        tunePanel.setBackground(Color.MAGENTA);
+        tunePanel.setBounds(0,600,400,300);
+        tunePanel.add(tuneButton);
 
 
         JLabel titleLabel = new JLabel();//creates a label
@@ -196,6 +216,7 @@ public class App implements ActionListener {
         frame.add(mutePanel);
         frame.add(keysPanel);
         frame.add(scalePanel);
+        frame.add(tunePanel);
         frame.setVisible(true);//ensures we can actually see the frame
         //frame.pack();
     }

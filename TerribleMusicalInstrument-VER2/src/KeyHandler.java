@@ -1,15 +1,20 @@
 import java.awt.event.*;//importing all java abstract window toolkit event libraries
+import javax.swing.JButton;
 
-
-public class KeyHandler implements KeyListener{ //KeyListener acts like a contract so it expects all three methods to be present
+public class KeyHandler implements KeyListener, ActionListener{ //KeyListener acts like a contract so it expects all three methods to be present
 
     private SoundEngine soundEngine;//creating a field for the sound engine
     private int pitchA, pitchS, pitchD, pitchF, pitchJ, pitchK, pitchL, pitchSemi;
     private boolean aHeld = false, sHeld = false, dHeld = false, fHeld = false, jHeld = false, kHeld = false, lHeld = false, semiHeld = false;//this will be used so the note will last for the duration of the key being held
+    private int velocity = 100;
+    private JButton tuneButton;
     //passes in the SoundEngine into that field
     //this avoids creating two soundEngine objects which cause clashes due to 2 synthesisers being made
     public KeyHandler(SoundEngine soundEngine) { //constructor for implementing soundEngine, must share same name as class (Java Rule)
         this.soundEngine = soundEngine; //setting our field in line 6 to the soundEngine constructor in the SoundEngine class
+    }
+    public void setTuneButton(JButton tuneButton){//creating a setter for the tuneButton
+        this.tuneButton = tuneButton;
     }
 
     @Override //creating my own keyPressed methods so I can tailor it towards my own logic
@@ -19,49 +24,41 @@ public class KeyHandler implements KeyListener{ //KeyListener acts like a contra
         if(key == KeyEvent.VK_A && !aHeld) {
             aHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchA = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(0, pitchA, velocity);
         }
         if(key == KeyEvent.VK_S && !sHeld){
             sHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchS = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(1, pitchS, velocity);
         }
         if(key == KeyEvent.VK_D && !dHeld){
             dHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchD = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(2, pitchD, velocity);
         }
         if(key == KeyEvent.VK_F && !fHeld){
             fHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchF = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(3, pitchF, velocity);
         }
         if(key == KeyEvent.VK_J && !jHeld){
             jHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchJ = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(4, pitchJ, velocity);
         }
         if(key == KeyEvent.VK_K && !kHeld){
             kHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchK = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(5, pitchK, velocity);
         }
         if(key == KeyEvent.VK_L && !lHeld){
             lHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchL = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(6, pitchL, velocity);
         }
         if(key == KeyEvent.VK_SEMICOLON && !semiHeld){
             semiHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
             pitchSemi = (int)(Math.random() * 128);
-            int velocity = (int)(Math.random() * 101);
             soundEngine.playNote(7, pitchSemi, velocity);
         }
     }
@@ -106,6 +103,13 @@ public class KeyHandler implements KeyListener{ //KeyListener acts like a contra
     @Override//must define this method as this interface acts as a contract promising all three methods will be present
     public void keyTyped(KeyEvent e){
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == tuneButton){
+            velocity = (int) (Math.random() * 101);
+        }
     }
 
 }
