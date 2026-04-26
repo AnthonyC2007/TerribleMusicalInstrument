@@ -1,11 +1,11 @@
-import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.awt.Color;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 public class App implements ActionListener {
 
@@ -19,6 +19,7 @@ public class App implements ActionListener {
     JButton muteButton;
     JButton scaleButton;
     JButton tuneButton;
+    JButton settingButton;
     public static void main(String[] args) throws Exception {
         
         SoundEngine soundEngine = new SoundEngine();
@@ -29,6 +30,7 @@ public class App implements ActionListener {
         Font regularFont = Font.createFont(Font.TRUETYPE_FONT, new File("TerribleMusicalInstrument-VER2/resources/WhimsyTT.ttf")).deriveFont(20f);
 
         ImageIcon muteIcon = new ImageIcon("TerribleMusicalInstrument-VER2/resources/muteIcon.png");
+        ImageIcon settingIcon = new ImageIcon("TerribleMusicalInstrument-VER2/resources/settingsCog.jpg");
         JFrame frame = new JFrame();//creates a frame
         JPanel titlePanel = new JPanel();
         JPanel volPanel = new JPanel();
@@ -43,10 +45,12 @@ public class App implements ActionListener {
         app.muteButton = new JButton();
         app.scaleButton = new JButton();
         app.tuneButton = new JButton();
+        app.settingButton = new JButton();
         JButton volButton = app.volButton;
         JButton muteButton = app.muteButton;
         JButton scaleButton = app.scaleButton;
         JButton tuneButton = app.tuneButton;
+        JButton settingButton = app.settingButton;
 
         //volButton.setVerticalAlignment(JButton.CENTER);
         //volButton.setHorizontalAlignment(JButton.CENTER);
@@ -67,10 +71,15 @@ public class App implements ActionListener {
 
         tuneButton.setText("Tune");
         tuneButton.setFont(regularFont);
-        tuneButton.setBounds(100, 100, 200, 100);
+        tuneButton.setBounds(100, 150, 200, 100);
         tuneButton.addActionListener(keyHandler); //sends the action to the keyHandler class
         tuneButton.addActionListener(e -> frame.requestFocusInWindow());
         keyHandler.setTuneButton(tuneButton);
+
+        settingButton.setIcon(settingIcon);
+        settingButton.setBounds(150, 25, 100, 100);
+        settingButton.addActionListener(app);
+        settingButton.addActionListener(e -> frame.requestFocusInWindow());
 
         frame.setSize(1200,900);//sets dimenstion
         titlePanel.setLayout(new BorderLayout());//creates a border for each panel so labels can be moved around them
@@ -101,6 +110,7 @@ public class App implements ActionListener {
         tunePanel.setBackground(Color.MAGENTA);
         tunePanel.setBounds(0,600,400,300);
         tunePanel.add(tuneButton);
+        tunePanel.add(settingButton);
 
 
         JLabel titleLabel = new JLabel();//creates a label
