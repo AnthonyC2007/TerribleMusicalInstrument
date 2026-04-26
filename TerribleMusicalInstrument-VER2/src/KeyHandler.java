@@ -1,5 +1,6 @@
 import java.awt.event.*;//importing all java abstract window toolkit event libraries
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class KeyHandler implements KeyListener, ActionListener{ //KeyListener acts like a contract so it expects all three methods to be present
 
@@ -108,8 +109,33 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == tuneButton){
-            velocity = (int) (Math.random() * 101);
+            int a = (int)(Math.random() * 100) + 1; //random numbers for eqn
+            int b = (int)(Math.random() * 100) + 1;
+            String[] ops = {"+", "-", "*"}; //array of operators that can be used
+            String op = ops[(int)(Math.random() * 3)]; //picks a random operator to be used
+            int answer;
+            if(op.equals("+")){ //calculates answer based on operands and operator
+                answer = a + b;
+            } else if(op.equals("-")){
+                answer = a - b;
+            } else {
+                answer = a * b;
+            }
+
+            String input = JOptionPane.showInputDialog(null, "Solve: " + a + "" + op + "" + b + " = ? ");
+            if(input != null){
+                try {
+                    if(Integer.parseInt(input.trim()) == answer){
+                        velocity = (int)(Math.random() * 101);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Wrong volumen unchanged");
+                    }    
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid Input");
+                }
+            }
         }
+
     }
 
 }
