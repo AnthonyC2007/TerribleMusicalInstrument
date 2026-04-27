@@ -257,7 +257,7 @@ public class App implements ActionListener {
             }
             }
         if(e.getSource() == settingButton){
-            String characters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+            String characters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789#%$£*?<>:;}{][~!()^,./|S";
             String randomString = "";
             for(int i = 0; i < 10; i++){
                 randomString += characters.charAt((int)(Math.random() * characters.length()));
@@ -268,6 +268,16 @@ public class App implements ActionListener {
                 input = input.trim();
                 if(input.equals(randomString)){
                     JOptionPane.showMessageDialog(null, "Correct");
+                    JDialog loadingDialog = new JDialog(); //creates a new popup window to hold the loading bar
+                    loadingDialog.setTitle("Loading...");
+                    loadingDialog.setSize(300, 100);
+                    loadingDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE); //cannot be closed
+                    loadingDialog.setLocationRelativeTo(null); //center the box to the center of the screen
+
+                    JProgressBar progressBar = new JProgressBar(); //creates the loading bar object
+                    progressBar.setIndeterminate(true);//means it will never complete
+                    loadingDialog.add(progressBar);
+                    loadingDialog.setVisible(true);
                 } else{
                     JOptionPane.showMessageDialog(null, "Incorrect");
                 }

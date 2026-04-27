@@ -111,15 +111,17 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
         if(e.getSource() == tuneButton){
             int a = (int)(Math.random() * 100) + 1; //random numbers for eqn
             int b = (int)(Math.random() * 100) + 1;
-            String[] ops = {"+", "-", "*"}; //array of operators that can be used
-            String op = ops[(int)(Math.random() * 3)]; //picks a random operator to be used
+            String[] ops = {"+", "-", "*", "/"}; //array of operators that can be used
+            String op = ops[(int)(Math.random() * 4)]; //picks a random operator to be used
             int answer;
             if(op.equals("+")){ //calculates answer based on operands and operator
                 answer = a + b;
             } else if(op.equals("-")){
                 answer = a - b;
-            } else {
+            } else if(op.equals("*")){
                 answer = a * b;
+            } else{
+                answer = a / b;
             }
 
             String input = JOptionPane.showInputDialog(null, "Solve: " + a + "" + op + "" + b + " = ? ");
