@@ -31,6 +31,8 @@ public class App implements ActionListener {
 
         ImageIcon muteIcon = new ImageIcon("TerribleMusicalInstrument-VER2/resources/muteIcon.png");
         ImageIcon settingIcon = new ImageIcon("TerribleMusicalInstrument-VER2/resources/settingsCog.jpg");
+        ImageIcon tuneIcon = new ImageIcon("TerribleMusicalInstrument-VER2/resources/splatter.png");
+
         JFrame frame = new JFrame();//creates a frame
         JPanel titlePanel = new JPanel();
         JPanel volPanel = new JPanel();
@@ -69,7 +71,10 @@ public class App implements ActionListener {
         scaleButton.addActionListener(app);
         scaleButton.addActionListener(e -> frame.requestFocusInWindow());
 
+        tuneButton.setIcon(tuneIcon);
         tuneButton.setText("Tune");
+        tuneButton.setHorizontalTextPosition(JButton.CENTER);
+        tuneButton.setVerticalTextPosition(JButton.CENTER);
         tuneButton.setFont(regularFont);
         tuneButton.setBounds(100, 150, 200, 100);
         tuneButton.addActionListener(keyHandler); //sends the action to the keyHandler class
@@ -121,7 +126,7 @@ public class App implements ActionListener {
         titleLabel.setHorizontalAlignment(JLabel.CENTER);//set text/image to center of label
         //titleLabel.setBounds(JLabel.CENTER,JLabel.TOP,250,100);
         //titleLabel.setHorizontalTextPosition(JLabel.CENTER);
-        //titleLabel.setVerticalTextPosition(JLabel.TOP);
+        //titleLabel.setVerticalTextPosition(JLabel.TOP); used to put text on top of an image
         //titleLabel.setForeground(new Color(0,0,0));
         titleLabel.setFont(titleFont); //set font of text
         //titleLabel.setIconTextGap(50); //set gap of text to image
@@ -251,7 +256,25 @@ public class App implements ActionListener {
                 stopTimer.start();
             }
             }
+        if(e.getSource() == settingButton){
+            String characters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+            String randomString = "";
+            for(int i = 0; i < 10; i++){
+                randomString += characters.charAt((int)(Math.random() * characters.length()));
+            }
 
+            String input = JOptionPane.showInputDialog(null, "Are you a robot? Copy this to verify: " + randomString);
+            if(input != null){
+                input = input.trim();
+                if(input.equals(randomString)){
+                    JOptionPane.showMessageDialog(null, "Correct");
+                } else{
+                    JOptionPane.showMessageDialog(null, "Incorrect");
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "No entry given");
+            }
+        }
     }
 }
 
