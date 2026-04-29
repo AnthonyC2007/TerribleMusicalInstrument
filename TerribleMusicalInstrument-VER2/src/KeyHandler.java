@@ -107,6 +107,7 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
 
     }
 
+    //TODO: Shoudn't it be in the App class?
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == tuneButton){
