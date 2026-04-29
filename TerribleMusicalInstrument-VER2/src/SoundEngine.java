@@ -1,27 +1,46 @@
 import javax.sound.midi.*;
 
 public class SoundEngine {
-
-    private MidiChannel[] channels; //declaring are private channels for the sound Engine
-
-    public SoundEngine() throws Exception{//creating a constructor to set up the synthesiser
-
+    public SoundEngine() throws Exception
+    {
         Synthesizer synth = MidiSystem.getSynthesizer();
         synth.open();
         channels = synth.getChannels();
-
-        for(int i = 0; i <= 8; i++){
-            channels[i].programChange(0);
+        
+        //TODO: Make sure not to use percusion instuments
+        //Assign random instrument to each channel
+        for(int i =0; i < 9; i++)//channel 9 is reserved for percusion
+        {
+            int instr = (int)(Math.random() * 128);
+            channels[i].programChange(instr);
         }
 
-        MidiChannel droneChannel = channels[10];
-        droneChannel.programChange(49);//changes instrument
-        droneChannel.noteOn(37, 50);//note plays forever in background
+        //Assign drone channel
+        channels[10].programChange(49);
     }
-    public void playNote(int channelIndex, int pitch, int velocity){//creating a general method for midi channels instead of hard coding
-        channels[channelIndex].noteOn(pitch, velocity);
+
+    public void playNote(int channel, int pitch, int velocity)
+    {
+        channels[channel].allNotesOff();
+        channels[channel].noteOn(pitch, velocity);
     }
-    public void stopNote(int channelIndex, int pitch){//creating a general method for stopping channels instead of hard coding
-        channels[channelIndex].noteOff(pitch);
+
+    //Only for compatibility, playing a new note stops every currently playing notes
+    public void stopNote(int channel, int pitch)
+    {
+        channels[channel].noteOff(pitch);
     }
+
+    //IDEA: Find the most irritating frequency
+    public void playForeverNote()
+    {
+        channels[10].noteOn(37, 50);
+    }
+
+    public void stopForeverNote()
+    {
+        channels[10].noteOff(37);
+    }
+
+    private MidiChannel[] channels;
 }
