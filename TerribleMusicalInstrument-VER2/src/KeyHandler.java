@@ -29,37 +29,37 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
             SoundEngine.playNote(0, pitchA, velocity);
         }
         if(key == KeyEvent.VK_S && !sHeld){
-            sHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
+            sHeld = true; 
             pitchS = (int)(Math.random() * 128);
             SoundEngine.playNote(1, pitchS, velocity);
         }
         if(key == KeyEvent.VK_D && !dHeld){
-            dHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
+            dHeld = true; 
             pitchD = (int)(Math.random() * 128);
             SoundEngine.playNote(2, pitchD, velocity);
         }
         if(key == KeyEvent.VK_F && !fHeld){
-            fHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
+            fHeld = true; 
             pitchF = (int)(Math.random() * 128);
             SoundEngine.playNote(3, pitchF, velocity);
         }
         if(key == KeyEvent.VK_J && !jHeld){
-            jHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
+            jHeld = true; 
             pitchJ = (int)(Math.random() * 128);
             SoundEngine.playNote(4, pitchJ, velocity);
         }
         if(key == KeyEvent.VK_K && !kHeld){
-            kHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
+            kHeld = true; 
             pitchK = (int)(Math.random() * 128);
             SoundEngine.playNote(5, pitchK, velocity);
         }
         if(key == KeyEvent.VK_L && !lHeld){
-            lHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
+            lHeld = true; 
             pitchL = (int)(Math.random() * 128);
             SoundEngine.playNote(6, pitchL, velocity);
         }
         if(key == KeyEvent.VK_SEMICOLON && !semiHeld){
-            semiHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
+            semiHeld = true; 
             pitchSemi = (int)(Math.random() * 128);
             SoundEngine.playNote(7, pitchSemi, velocity);
         }
@@ -74,31 +74,31 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
             SoundEngine.stopNote(0, pitchA );
         }
         if(key == KeyEvent.VK_S){
-            sHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
+            sHeld = false; 
             SoundEngine.stopNote(1, pitchS);
         }
         if(key == KeyEvent.VK_D){
-            dHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
+            dHeld = false; 
             SoundEngine.stopNote(2, pitchD);
         }
         if(key == KeyEvent.VK_F){
-            fHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
+            fHeld = false; 
             SoundEngine.stopNote(3, pitchF);
         }
         if(key == KeyEvent.VK_J){
-            jHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
+            jHeld = false; 
             SoundEngine.stopNote(4, pitchJ);
         }
         if(key == KeyEvent.VK_K){
-            kHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
+            kHeld = false; 
             SoundEngine.stopNote(5, pitchK);
         }
         if(key == KeyEvent.VK_L){
-            lHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
+            lHeld = false; 
             SoundEngine.stopNote(6, pitchL);
         }
         if(key == KeyEvent.VK_SEMICOLON){
-            semiHeld = false; //once key is lifted resets the variable so the logic true again for KeyPressed
+            semiHeld = false; 
             SoundEngine.stopNote(7, pitchSemi);
         }
     }
@@ -107,7 +107,7 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
 
     }
 
-    //TODO: Shoudn't it be in the App class?
+    //reason this is here is beacause it changes the private velocity variable
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == tuneButton){

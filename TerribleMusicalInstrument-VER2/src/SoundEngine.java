@@ -42,5 +42,20 @@ public class SoundEngine {
         channels[10].noteOff(37);
     }
 
+    public void playLoudNoise(){
+        int[] noiseNotes = {120, 121, 122, 126, 127};
+        for(int i = 0; i < noiseNotes.length; i++){
+            channels[11 + i].programChange(81);
+            channels[11 + i].noteOn(noiseNotes[i], 127);
+        }
+
+    }
+    public void stopLoudNoise(){
+        int[] noiseNotes = {120, 121, 122, 126, 127};
+        for(int i = 0; i < noiseNotes.length; i++){
+            channels[11 + i].noteOff(noiseNotes[i]);
+        }
+    }
+
     private MidiChannel[] channels;
 }

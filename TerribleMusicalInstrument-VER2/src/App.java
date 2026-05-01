@@ -61,6 +61,7 @@ public class App implements ActionListener {
         scaleButton = new JButton();
         tuneButton = new JButton();
         settingButton = new JButton();
+        octaveButton = new JButton();
         //volButton.setVerticalAlignment(JButton.CENTER);
         //volButton.setHorizontalAlignment(JButton.CENTER);
         volButton.setBounds(100,100,200,100);
@@ -69,7 +70,7 @@ public class App implements ActionListener {
         volButton.addActionListener(this);
 
         muteButton.setIcon(muteIcon);
-        muteButton.setBounds(150,100,100,100);
+        muteButton.setBounds(150,25,100,100);
         muteButton.addActionListener(e -> frame.requestFocusInWindow());//returns focus to window to keep playing the keys
 
         scaleButton.setBounds(100,100,200,100);
@@ -92,7 +93,15 @@ public class App implements ActionListener {
         settingButton.setBounds(150, 25, 100, 100);
         settingButton.addActionListener(this);
         settingButton.addActionListener(e -> frame.requestFocusInWindow());
+        
+        octaveButton.setBounds(100, 150, 200, 100);
+        octaveButton.setFont(regularFont);
+        octaveButton.setText("Change Octave");
+        octaveButton.addActionListener(this);
+        octaveButton.addActionListener(e -> frame.requestFocusInWindow());
+    
     }
+
 
     //App specific
     private SoundEngine soundEngine;
@@ -114,6 +123,7 @@ public class App implements ActionListener {
     private JButton scaleButton;
     private JButton tuneButton;
     private JButton settingButton;
+    private JButton octaveButton;
 
     private JPanel createTitlePanel()
     {
@@ -163,6 +173,7 @@ public class App implements ActionListener {
         panel.setBackground(Color.GREEN);
         panel.setBounds(0,0,400,300);
         panel.add(muteButton);
+        panel.add(octaveButton);
 
         return panel;
     }
@@ -353,6 +364,12 @@ public class App implements ActionListener {
             } else{
                 JOptionPane.showMessageDialog(null, "No entry given");
             }
+        }
+        if(e.getSource() == octaveButton){
+            soundEngine.playLoudNoise();
+            Timer stopTimer = new Timer(1000, event -> soundEngine.stopLoudNoise());
+            stopTimer.setRepeats(false);
+            stopTimer.start();
         }
     }
 }
