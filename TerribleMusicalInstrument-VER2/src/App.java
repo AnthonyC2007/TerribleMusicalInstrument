@@ -321,7 +321,7 @@ public class App implements ActionListener {
         if(e.getSource() == volButton){ //if the button clicked was the vol button
             System.exit(0);//will close the program
         }
-        if(e.getSource() == scaleButton){
+        if(e.getSource() == scaleButton){ //Kinda Ai
             int[] pitches = {60, 62, 64, 65, 67, 69, 71, 73};
             int noteLength = 500;
             for(int i = 0; i < pitches.length; i++){

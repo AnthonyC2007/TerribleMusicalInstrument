@@ -16,7 +16,7 @@ public class SoundEngine {
         }
 
         //Assign drone channel
-        channels[10].programChange(49);
+        channels[10].programChange(49); 
     }
 
     public void playNote(int channel, int pitch, int velocity)
@@ -30,8 +30,7 @@ public class SoundEngine {
     {
         channels[channel].noteOff(pitch);
     }
-
-    //IDEA: Find the most irritating frequency
+    
     public void playForeverNote()
     {
         channels[10].noteOn(37, 50);
@@ -42,7 +41,7 @@ public class SoundEngine {
         channels[10].noteOff(37);
     }
 
-    public void playLoudNoise(){
+    public void playLoudNoise(){ // AI
         int[] noiseNotes = {120, 121, 122, 126, 127};
         for(int i = 0; i < noiseNotes.length; i++){
             channels[11 + i].programChange(81);
@@ -50,7 +49,7 @@ public class SoundEngine {
         }
 
     }
-    public void stopLoudNoise(){
+    public void stopLoudNoise(){ //AI
         int[] noiseNotes = {120, 121, 122, 126, 127};
         for(int i = 0; i < noiseNotes.length; i++){
             channels[11 + i].noteOff(noiseNotes[i]);

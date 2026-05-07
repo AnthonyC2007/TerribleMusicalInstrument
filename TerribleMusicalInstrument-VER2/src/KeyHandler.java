@@ -12,16 +12,16 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
     private JButton tuneButton;
     //passes in the SoundEngine into that field
     //this avoids creating two SoundEngine objects which cause clashes due to 2 synthesisers being made
-    public KeyHandler(SoundEngine SoundEngine) { //constructor for implementing SoundEngine, must share same name as class (Java Rule)
+    public KeyHandler(SoundEngine SoundEngine) { //constructor for implementing SoundEngine, must share same name as class (Java Rule) (AI - had ask Ai how to use a constructor)
         this.SoundEngine = SoundEngine; //setting our field in line 6 to the SoundEngine constructor in the SoundEngine class
     }
-    public void setTuneButton(JButton tuneButton){//creating a setter for the tuneButton
+    public void setTuneButton(JButton tuneButton){//creating a setter for the tuneButton (Ai - difference between a setter and constructor)
         this.tuneButton = tuneButton;
     }
 
     @Override //creating my own keyPressed methods so I can tailor it towards my own logic
     public void keyPressed(KeyEvent e){
-        int key = e.getKeyCode();
+        int key = e.getKeyCode(); //AI for how to receive key codes
 
         if(key == KeyEvent.VK_A && !aHeld) {
             aHeld = true; //this will stop the method repeating when the Key is pressed down, now acts like a real piano
@@ -132,7 +132,7 @@ public class KeyHandler implements KeyListener, ActionListener{ //KeyListener ac
                     if(Integer.parseInt(input.trim()) == answer){
                         velocity = (int)(Math.random() * 101);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Wrong volumen unchanged");
+                        JOptionPane.showMessageDialog(null, "Wrong volume unchanged");
                     }    
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Invalid Input");
